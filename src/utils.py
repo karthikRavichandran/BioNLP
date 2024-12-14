@@ -1,5 +1,8 @@
 import re
 from openai import OpenAI
+# api = ""
+import os
+
 api = ""
 
 client = OpenAI(
