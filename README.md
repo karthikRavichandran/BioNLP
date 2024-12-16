@@ -7,6 +7,7 @@ BioNLP Independent study (Fall 2024)
 The **BioNLP** project is a Python-based pipeline designed for generating USMLE-style medical questions from unstructured textual data. By leveraging AI-driven systems, the project ensures that generated questions adhere to medical examination standards, promoting knowledge application and critical thinking. The pipeline is structured with modular components and robust error handling for processing large datasets.
 
 ---
+<img width="623" alt="image" src="https://github.com/user-attachments/assets/35c74ff0-4954-4f72-b1fd-2560bbfca436" />
 
 #### **Directory Structure**
 
