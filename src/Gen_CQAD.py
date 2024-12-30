@@ -1,12 +1,12 @@
 from utils import client
-from prompts import get_CQAD_prompt, CQAD_system_prompt
+from prompts import get_CQAD_prompt, CQAD_system_prompt, get_CQAD_prompt_v2
 from gen_files.example_context import context1
 import json
 from tqdm import tqdm
 import re
 import random
 
-
+get_CQAD_prompt = get_CQAD_prompt_v2
 
 completion = client.chat.completions.create(
             model="gpt-4o-mini",  # claude-3-haiku-20240307
