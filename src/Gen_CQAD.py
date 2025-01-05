@@ -55,7 +55,7 @@ for clean_text_id in range(0,10):
 
 
 
-    with open(f"../gen_files/cqad_sets/Instruction_{clean_text_id}_version3.json", "w") as outfile:
+    with open(f"../gen_files/cqad_set_v4/Instruction_{clean_text_id}_version4.json", "w") as outfile:
         json.dump(out_list, outfile)
 
 print(completion.choices[0].message.content)
