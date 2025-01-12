@@ -17,7 +17,7 @@ completion = client.chat.completions.create(
         )
 
 
-for clean_text_id in range(0,10):
+for clean_text_id in range(11,12):
     with open(f'../gen_files/clean_text/Clean_text_{clean_text_id}_version2.json', 'r') as file:
         data = json.load(file)
     count = 0

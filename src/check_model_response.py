@@ -1,10 +1,10 @@
 import pandas as pd
 from tqdm import tqdm
 from utils import client, read_json, save_json, quick_llm_completions
-file_name = 'final_cs_Mistral-7B-Instruct-v0.2_10.csv'
+file_name = 'final_cs_Qwen2-7B-Instruct_10.csv'
 save_location = '../response/'
 # save_name = file_name.split(".")[0] + '_matched.csv'
-save_name = 'final_cs_Mistral-7B-Instruct-v0.2_10_matched.csv'
+save_name = 'final_cs_Qwen2-7B-Instruct_10_matched.csv'
 data_seted = pd.read_csv(save_location+file_name)
 data = data_seted.filter(["ans_wo_context","ans_w_context","orginal_ans","full_option"],
                    axis=1)
@@ -19,7 +19,7 @@ system_prompt = ("You're an research assistance where you will compute a "
 def compute_match(full_option, original_ans, ans):
     matchs = []
     for i in tqdm(range(len(full_option))):
-        pt = f"'full_option': {full_option[i]}\n'original_ans': {original_ans[i]}, 'generated_answer': {ans[i]} give 0 for mismatch, 1 for match"
+        pt = f"'full_option': {full_option[i]}\n'original_ans': {original_ans[i]}, 'generated_answer': {ans[i]} give 0 for mismatch, 1 for match. Strictly give only 1 or 0"
         out = quick_llm_completions (system_prompt, pt)
         matchs.append(out)
     return matchs

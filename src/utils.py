@@ -1,5 +1,6 @@
 import re
 from openai import OpenAI
+import matplotlib.pyplot as plt
 # api = ""
 import os
 
@@ -50,6 +51,35 @@ def get_q_c_prompt(question, choices):
 def save_json(data_dict, file_path):
     with open(f"{file_path}", "w") as outfile:
         json.dump(data_dict, outfile)
+
+
+def plot_acc(df, model_name=''):
+    plt.figure(figsize=(10, 6))
+    bar_width = 0.25
+    x = df["chunk_set_id"]
+
+    plt.bar(x - bar_width / 2, df["wo_context_acc"], width=bar_width,
+            label="wo_context_acc", color="orange")
+    plt.bar(x + bar_width / 2, df["w_context"], width=bar_width, label="w_context", color="green")
+
+    # plt.plot(df["chunk_set_id"], df["wo_context_acc"], marker='o',
+    #          label="wo_context_acc")
+    # plt.plot(df["chunk_set_id"], df["w_context"], marker='o', label="w_context")
+
+    # Labels and title
+    plt.xlabel("Chunk Set ID")
+    plt.ylabel("Accuracy")
+    plt.title(f"Accuracy Comparison: {model_name}")
+    plt.xticks(x, df["chunk_set_id"])
+    plt.legend()
+    plt.grid(True, linestyle='--', alpha=0.7)
+    plt.tight_layout()
+    # plt.legend()
+    # plt.tight_layout()
+
+    # Show plot
+    plt.show()
+
 
 def quick_llm_completions(sys_pt, pt, model_name="gpt-4o-mini"):
     completion = client.chat.completions.create(
