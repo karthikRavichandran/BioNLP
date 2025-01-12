@@ -47,6 +47,24 @@ def get_q_c_prompt(question, choices):
     '''
     return system_prompt, prompt
 
+def save_json(data_dict, file_path):
+    with open(f"{file_path}", "w") as outfile:
+        json.dump(data_dict, outfile)
+
+def quick_llm_completions(sys_pt, pt, model_name="gpt-4o-mini"):
+    completion = client.chat.completions.create(
+        model=model_name,  # claude-3-haiku-20240307
+        messages=[
+            {"role": "system", "content": sys_pt},
+            {"role": "user", "content": pt}
+        ]
+    )
+    out = completion.choices[0].message.content
+    return out
+def read_json(file_path):
+    with open(file_path, 'r') as file:
+        data = json.load(file)
+    return data
 def get_context_q_c_prompt(context, question, choices):
     system_prompt = \
         '''
