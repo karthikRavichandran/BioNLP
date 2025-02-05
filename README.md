@@ -159,6 +159,11 @@ Select the correct answer and explain it in a chain-of-thought manner
 
 ---
 
+#### **Results**
+
+![image](https://github.com/user-attachments/assets/1f4ab02b-2153-488e-9656-79ac46e39b4e)
+
+
 #### **Authors and Acknowledgments**
 This project was developed for educational and research purposes, leveraging GPT-based AI models to generate high-quality medical questions. It combines computational efficiency with educational rigor, creating a scalable framework for content generation.
 
