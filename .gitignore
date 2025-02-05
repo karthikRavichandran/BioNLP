@@ -51,6 +51,12 @@ coverage.xml
 .hypothesis/
 .pytest_cache/
 cover/
+.DS_Store
+.idea/
+config.json
+Untitled.ipynb
+Untitled1.ipynb
+Untitled2.ipynb
 
 # Translations
 *.mo

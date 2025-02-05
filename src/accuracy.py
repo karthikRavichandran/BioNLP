@@ -20,8 +20,13 @@ for m in models:
                   "w_context": w_acc,
                   "chunks in the set": total_chunks})
     final_df = pd.DataFrame(k)
-    plot_acc(final_df,m.split("final_cs_")[1] )
+    # plot_acc(final_df,m.split("final_cs_")[1] )
     final_df.to_csv("../response/acc_set_wise.csv")
-    print(final_df)
+    wo = final_df["wo_context_acc"].describe().filter(['mean', 'std', 'min', 'max'])
+    w = final_df["w_context"].describe().filter(['mean', 'std', 'min', 'max'])
+    print(f"{m.split('final_cs_')[1]}")
+    print(pd.concat([wo, w], axis=1))
+    # print(final_df)
+
 
 

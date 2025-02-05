@@ -52,6 +52,10 @@ def save_json(data_dict, file_path):
     with open(f"{file_path}", "w") as outfile:
         json.dump(data_dict, outfile)
 
+def read_json(json_path):
+    with open(json_path, 'r') as file:
+        data = json.load(file)
+    return data
 
 def plot_acc(df, model_name=''):
     plt.figure(figsize=(10, 6))
@@ -164,3 +168,13 @@ def get_context_cs_q_c_prompt(context, question, clinical_scenario, choices):
             '''
 
         return system_prompt, prompt
+
+def chat_completion(system_pt, user_pt):
+    completion = client.chat.completions.create(
+            model="gpt-4o-mini",  # claude-3-haiku-20240307
+            messages=[
+                {"role": "system", "content": system_pt},
+                {"role": "user", "content": user_pt}
+            ]
+        )
+    return completion.choices[0].message.content

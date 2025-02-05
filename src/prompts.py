@@ -35,6 +35,27 @@ Given a retrivied context, you have to come up with set of complicated medical q
 And follow these rules {rules}
 '''
 
+def get_slm_output_parser(slm_full_option, context):
+    '''
+    What it is doing:
+
+    SLM output —> 
+        gpt4o mini formatting step (ask it not change content itself in reasoning, only make it better format) —> 
+            SLM reasoning, SLM prediction, category a/b to use information in context
+    '''
+    sys_pt =  f'''You're a assistant who's expert in parsing the unformated output from a small models output \
+        and extract the part related to reason given the context'''
+
+    rules = f'''1. Reason from the output 
+    2. Give the option (A/B/C/D/E) 
+    3. Give the extracted part of context that supports reason
+    4. Create a dict with keys reason, option, e_context with above values
+    Note: Just give the dict don't enclose it with python or json'''
+
+    pt = f'''Here is the small model's output with options and it's explanation {slm_full_option} and the context to check {context} extract the following:\n'''
+
+    return sys_pt, f'''{pt}\nRules:\n{rules}'''
+
 def get_instruction_prompt(question, context, answer):
     rules = '''1. Don't give any Example Application in the instruction 
     2. Return only instruction for the task 
