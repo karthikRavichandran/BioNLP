@@ -46,15 +46,37 @@ def get_slm_output_parser(slm_full_option, context):
     sys_pt =  f'''You're a assistant who's expert in parsing the unformated output from a small models output \
         and extract the part related to reason given the context'''
 
+    # rules = f'''1. Reason from the output
+    # 2. Give the option (A/B/C/D/E)
+    # 3. Give the extracted part of context that supports reason #TODO Cnage the 3 to check if it has direct evident fromthe context or not (0/1)
+    # 4. Create a dict with keys reason, option, e_context with above values
+    # Note: Just give the dict don't enclose it with python or json'''
+
+    Instructions = f'''Retrievable Reasoning
+                    In this case, the answer can be directly found in the provided context, typically by locating and matching key information.
+                    This type of reasoning relies solely on explicit information within the context and does not require additional logical inference or external knowledge.
+                    Example:
+                    Context: “Patients who take Drug A often experience mild dizziness as a side effect.”
+                    Question: “What side effect might Drug A cause?”
+                    Answer: “Mild dizziness.” (The answer is explicitly stated in the context.)
+                    Inferential Reasoning
+                    This type of reasoning requires going beyond the direct information provided in the context. The context only offers hints, and the answer must be derived through logical inference or background knowledge.
+                    This often involves causal reasoning, analogy, induction, or deduction.
+                    Example:
+                    Context: “The patient reported feeling fatigued after taking Drug A, which is known to affect the nervous system.”
+                    Question: “Why does Drug A cause fatigue?”
+                    Answer: “Because Drug A affects the nervous system, and changes in the nervous system can lead to fatigue.” (Requires inferring the causal relationship: Drug A → nervous system effects → fatigue.)
+                    '''
+
     rules = f'''1. Reason from the output 
     2. Give the option (A/B/C/D/E) 
-    3. Give the extracted part of context that supports reason
-    4. Create a dict with keys reason, option, e_context with above values
+    3. Give Retrievable or Inferential use Retrievable/Inferential information given about to find.
+    4. Create a dict with keys reason, option, Retrievable/Inferential with above values
     Note: Just give the dict don't enclose it with python or json'''
 
     pt = f'''Here is the small model's output with options and it's explanation {slm_full_option} and the context to check {context} extract the following:\n'''
 
-    return sys_pt, f'''{pt}\nRules:\n{rules}'''
+    return sys_pt, f'''Retrievable/Inferential information:{Instructions}\n{pt}\nRules:\n{rules}'''
 
 def get_instruction_prompt(question, context, answer):
     rules = '''1. Don't give any Example Application in the instruction 

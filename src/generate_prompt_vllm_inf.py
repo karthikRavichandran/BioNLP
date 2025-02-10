@@ -1,6 +1,7 @@
 import json
 from utils import (get_q_c_prompt, get_context_q_c_prompt,
-                   get_cs_q_c_prompt, get_context_cs_q_c_prompt)
+                   get_cs_q_c_prompt, get_context_cs_q_c_prompt,
+                   get_cs_q_c_prompt_w_reason, get_context_cs_q_c_prompt_w_reason)
 file_root_path = "../gen_files/cqad_set_v4"
 text_id = 0
 for text_id in range(10):
@@ -18,13 +19,13 @@ for text_id in range(10):
             questions = Final_set["Question"]
             ans = Final_set["Answer"]
             # _, prompt = get_q_c_prompt(question=questions, choices=choices)
-            _, prompt = get_cs_q_c_prompt(question=questions,
+            _, prompt = get_cs_q_c_prompt_w_reason(question=questions,
                                           clinical_scenario=cs,
                                           choices=choices)
             # _, context_prompt = get_context_q_c_prompt(context=context,
             #                        question=questions,
             #                        choices=choices)
-            _, context_prompt = get_context_cs_q_c_prompt(context=context,
+            _, context_prompt = get_context_cs_q_c_prompt_w_reason(context=context,
                                                           clinical_scenario=cs,
                                    question=questions,
                                    choices=choices)

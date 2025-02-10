@@ -169,6 +169,53 @@ def get_context_cs_q_c_prompt(context, question, clinical_scenario, choices):
 
         return system_prompt, prompt
 
+
+def get_cs_q_c_prompt_w_reason(question, clinical_scenario, choices):
+    system_prompt = \
+    '''
+    You are a highly knowledgeable medical assistant specialized in occupational health and toxicology.
+    Your role is to analyze detailed Clinical scenarios and 
+    accurately assess health risks and answer the question based on the provided multiple-choice options
+    '''
+    prompt =\
+        f'''Answer the medical question for the clinical scenario based on the below options provided
+        \n
+        Clinical Scenario: {clinical_scenario}
+        \n
+        Question : {question}
+        \n
+        Choices : {choices}
+        \n
+        Output : Option and reason
+        \n
+    Note: give the final answer as the option and a detail reason for selecting it
+    '''
+    return system_prompt, prompt
+
+def get_context_cs_q_c_prompt_w_reason(context, question, clinical_scenario, choices):
+        system_prompt = \
+            '''
+            You are a highly knowledgeable medical assistant specialized in occupational health and toxicology.
+            Your role is to analyze detailed Clinical scenarios and 
+            accurately assess health risks and answer the question based on the provided medical context and multiple-choice options
+            '''
+        prompt = \
+            f'''Answer the medical question for the clinical scenario based on the below options provided
+                \n
+                Clinical Scenario: {clinical_scenario}
+                \n
+                Context : {context}
+                \n
+                Question : {question}
+                \n
+                Choices : {choices}
+                \n
+                Output : Option and reason
+                \n
+            Note: give the final answer as the option and a detail reason for selecting it
+            '''
+
+        return system_prompt, prompt
 def chat_completion(system_pt, user_pt):
     completion = client.chat.completions.create(
             model="gpt-4o-mini",  # claude-3-haiku-20240307

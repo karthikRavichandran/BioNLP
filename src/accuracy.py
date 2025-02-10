@@ -1,9 +1,9 @@
 import pandas as pd
 from utils import plot_acc
-models = ['final_cs_Meta-Llama-3.1-8B-Instruct_10',
-          'final_cs_Mistral-7B-Instruct-v0.2_10',
-          'final_cs_Phi-3-mini-128k-instruct_10',
-          'final_cs_Qwen2-7B-Instruct_10']
+# models = ['final_cs_Meta-Llama-3.1-8B-Instruct_10',
+#           'final_cs_Mistral-7B-Instruct-v0.2_10',
+#           'final_cs_Phi-3-mini-128k-instruct_10',
+models = ['final_cs_Qwen2-7B-Instruct_10']
 for m in models:
     final_out_path = f"../response/{m}_matched.csv"
     df = pd.read_csv(final_out_path).dropna()
